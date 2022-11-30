@@ -30,7 +30,15 @@ namespace WebDriverUnitTest
 
         public SearchResultsPage FilterByWithoutAnswer()
         {
-            new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//a[@data-nav-value='Unanswered']"))).Click();
+            try
+            {
+                new WebDriverWait(Driver, new TimeSpan(0, 0, 10)).Until(d => d.FindElement(By.XPath("//*[@id=\"mainbar\"]/div[4]/div/div[2]/div/div[1]/button"))).Click();
+                new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id='uql-more-popover']/ul/li[2]/a"))).Click();
+            }
+            catch (ElementNotInteractableException)
+            {
+                new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//a[@data-nav-value='Unanswered']"))).Click();
+            }
             return this;
         }
     }
