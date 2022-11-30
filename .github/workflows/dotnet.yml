@@ -27,11 +27,14 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
+    - name: move to folder
+      run: cd lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+
     - name: Install dependencies
-      run: dotnet restore lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+      run: dotnet restore
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+      run: dotnet build --no-restore
     
     - name: Test
-      run: dotnet test --no-restore --verbosity normal lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+      run: dotnet test --no-build --verbosity normal --no-restore
