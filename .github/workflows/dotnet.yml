@@ -2,6 +2,9 @@ name: build and test
 
 on:
   push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-and-test:
@@ -19,7 +22,7 @@ jobs:
       run: dotnet restore lab10\TPOWebTestsCSharp\
       
     - name: Build
-      run: dotnet build --no-restore lab10\TPOWebTestsCSharp\
+      run: dotnet build --configuration Release --no-restore lab10\TPOWebTestsCSharp\
     
     - name: Test
-      run: dotnet test --no-build --verbosity normal --no-restore lab10\TPOWebTestsCSharp\
+      run: dotnet test lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Release\WebDriverUnitTest.dll
