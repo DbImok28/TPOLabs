@@ -28,7 +28,7 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: move to folder
-      run: cd lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+      run:  cd lab10\TPOWebTestsCSharp\
 
     - name: Install dependencies
       run: dotnet restore
