@@ -2,39 +2,24 @@ name: build and test
 
 on:
   push:
-  pull_request:
-    branches: [ main ]
-    paths:
-    - '**.cs'
-    - '**.csproj'
-
-env:
-  DOTNET_VERSION: '3.*' # The .NET SDK version to use
 
 jobs:
   build-and-test:
-
-    name: build-and-test-${{matrix.os}}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest]
+    name: build-and-test
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: move to folder
-      run:  cd lab10\TPOWebTestsCSharp\
+        dotnet-version: '3.*'
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore lab10\TPOWebTestsCSharp\
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore lab10\TPOWebTestsCSharp\
     
     - name: Test
-      run: dotnet test --no-build --verbosity normal --no-restore
+      run: dotnet test --no-build --verbosity normal --no-restore lab10\TPOWebTestsCSharp\
