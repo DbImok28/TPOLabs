@@ -1,5 +1,4 @@
-name: dotnet package
-
+name: Run CSharp tests
 on: [push]
 
 jobs:
@@ -10,18 +9,18 @@ jobs:
       matrix:
         dotnet-version: ['3.1.x']
 
-      steps:
-        - uses: actions/checkout@v3
-        - name: Setup dotnet
-          uses: actions/setup-dotnet@v3
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
-        - name: Install dependencies
-          run: dotnet restore .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
-        - name: Test with dotnet
-          run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
-        - name: Upload dotnet test results
-          uses: actions/upload-artifact@v3
-          with:
-            name: dotnet-results-${{ matrix.dotnet-version }}
-            path: TestResults-${{ matrix.dotnet-version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
+      - name: Test with dotnet
+        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
+      - name: Upload dotnet test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnet-results-${{ matrix.dotnet-version }}
+          path: TestResults-${{ matrix.dotnet-version }}
