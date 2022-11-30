@@ -1,0 +1,37 @@
+name: build and test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '* */5 * * *'
+
+jobs:
+  build-and-test:
+    name: build-and-test
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '3.*'
+
+    - name: Install dependencies
+      run: dotnet restore lab10\TPOWebTestsCSharp\
+      
+    - name: Build
+      run: dotnet build --no-restore lab10\TPOWebTestsCSharp\
+    
+    - name: Test
+      run: dotnet test lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Debug\WebDriverUnitTest.dll --results-directory test-result --verbosity normal --logger trx
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Application_Artifact
+        path: lab10\TPOWebTestsCSharp\test-result
