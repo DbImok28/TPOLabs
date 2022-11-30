@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build-and-test:
+  lab10-test:
     name: build-and-test
     runs-on: windows-latest
 
