@@ -30,7 +30,7 @@ namespace WebDriverUnitTest
 
         public SearchResultsPage FilterByWithoutAnswer()
         {
-            new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@data-nav-value='Unanswered']"))).Click();
+            new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//a[@data-nav-value='Unanswered']"))).Click();
             return this;
         }
     }

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="739cc258-2f10-41dd-9c58-2b48d1f4e91b" name="pavel@DESKTOP-2EFHGBU 2022-11-30 18:07:23" runUser="DESKTOP-2EFHGBU\pavel" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-11-30T18:07:23.1510671+03:00" queuing="2022-11-30T18:07:23.1510673+03:00" start="2022-11-30T18:07:17.9025435+03:00" finish="2022-11-30T18:07:27.7353369+03:00" />
+  <TestSettings name="default" id="4171180d-1923-467c-8c9c-ed840c88e1e1">
+    <Deployment runDeploymentRoot="pavel_DESKTOP-2EFHGBU_2022-11-30_18_07_23" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="6cc687c4-d5b8-4fae-9a61-43f83bce4bd8" testId="79e89e64-7e51-4c40-a3f5-7a561f177f56" testName="FindQuestionWithoutAnswerTest" computerName="DESKTOP-2EFHGBU" duration="00:00:04.4723182" startTime="2022-11-30T18:07:23.1285557+03:00" endTime="2022-11-30T18:07:27.6016668+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6cc687c4-d5b8-4fae-9a61-43f83bce4bd8" />
+    <UnitTestResult executionId="5fa734f4-7368-498a-bae2-b8a71b68caaa" testId="b2dd6d05-a7ea-4281-b3c3-38bd2b8aa050" testName="QuestionSearchTest" computerName="DESKTOP-2EFHGBU" duration="00:00:03.9509946" startTime="2022-11-30T18:07:18.9277936+03:00" endTime="2022-11-30T18:07:23.1125551+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5fa734f4-7368-498a-bae2-b8a71b68caaa" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="QuestionSearchTest" storage="g:\labs\tpo\tpolabs\lab10\tpowebtestscsharp\webdriverunittest\bin\debug\webdriverunittest.dll" id="b2dd6d05-a7ea-4281-b3c3-38bd2b8aa050">
+      <Execution id="5fa734f4-7368-498a-bae2-b8a71b68caaa" />
+      <TestMethod codeBase="G:\Labs\TPO\TPOLabs\lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Debug\WebDriverUnitTest.dll" adapterTypeName="executor://mstestadapter/v2" className="WebDriverUnitTest.CeleniumTests" name="QuestionSearchTest" />
+    </UnitTest>
+    <UnitTest name="FindQuestionWithoutAnswerTest" storage="g:\labs\tpo\tpolabs\lab10\tpowebtestscsharp\webdriverunittest\bin\debug\webdriverunittest.dll" id="79e89e64-7e51-4c40-a3f5-7a561f177f56">
+      <Execution id="6cc687c4-d5b8-4fae-9a61-43f83bce4bd8" />
+      <TestMethod codeBase="G:\Labs\TPO\TPOLabs\lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Debug\WebDriverUnitTest.dll" adapterTypeName="executor://mstestadapter/v2" className="WebDriverUnitTest.CeleniumTests" name="FindQuestionWithoutAnswerTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="79e89e64-7e51-4c40-a3f5-7a561f177f56" executionId="6cc687c4-d5b8-4fae-9a61-43f83bce4bd8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b2dd6d05-a7ea-4281-b3c3-38bd2b8aa050" executionId="5fa734f4-7368-498a-bae2-b8a71b68caaa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+</TestRun>
