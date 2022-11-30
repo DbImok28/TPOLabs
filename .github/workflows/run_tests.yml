@@ -1,27 +1,37 @@
-name: Run CSharp tests
+name: build and test
 
-on: [push]
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+    paths:
+    - '**.cs'
+    - '**.csproj'
+
+env:
+  DOTNET_VERSION: '4.*' # The .NET SDK version to use
 
 jobs:
-  build:
+  build-and-test:
 
-    runs-on: windows-latest
+    name: build-and-test-${{matrix.os}}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        dotnet-version: ['3.1.x']
+        os: [windows-latest]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Install dependencies
-        run: dotnet restore .\lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln /p:RestoreUseSkipNonexistentTarget
-      - name: Test with dotnet
-        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" .\lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
-      - name: Upload dotnet test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: dotnet-results-${{ matrix.dotnet-version }}
-          path: TestResults-${{ matrix.dotnet-version }}
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
+    
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
