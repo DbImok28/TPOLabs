@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-and-test:
-    name: lab10-tests
+    name: build-and-test
     runs-on: windows-latest
 
     steps:
@@ -22,7 +22,13 @@ jobs:
       run: dotnet restore lab10\TPOWebTestsCSharp\
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore lab10\TPOWebTestsCSharp\
+      run: dotnet build --no-restore lab10\TPOWebTestsCSharp\
     
     - name: Test
-      run: dotnet test lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Release\WebDriverUnitTest.dll
+      run: dotnet test lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Debug\WebDriverUnitTest.dll --results-directory test-result --verbosity normal --logger trx
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Application_Artifact
+        path: lab10\TPOWebTestsCSharp\test-result
