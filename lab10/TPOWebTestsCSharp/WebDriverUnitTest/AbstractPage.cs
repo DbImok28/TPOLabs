@@ -6,7 +6,7 @@ namespace WebDriverUnitTest
     public class AbstractPage
     {
         protected WebDriver Driver { get; }
-        protected TimeSpan WaitTimeOut = new TimeSpan(0, 0, 10);
+        protected TimeSpan WaitTimeOut = new TimeSpan(0, 2, 0);
 
         public AbstractPage(WebDriver driver)
         {
