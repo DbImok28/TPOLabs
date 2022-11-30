@@ -1,10 +1,11 @@
 name: Run CSharp tests
+
 on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         dotnet-version: ['3.1.x']
@@ -16,9 +17,9 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
+        run: dotnet restore .\lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln /p:RestoreUseSkipNonexistentTarget
       - name: Test with dotnet
-        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" .\lab10\TPOWebTestsCSharp\WebDriverUnitTest\
+        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}" .\lab10\TPOWebTestsCSharp\TPOWebTestsCSharp.sln
       - name: Upload dotnet test results
         uses: actions/upload-artifact@v3
         with:
