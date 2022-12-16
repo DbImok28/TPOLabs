@@ -5,6 +5,7 @@ using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using log4net;
 using TPO_WebTestFramework.Util;
+using System.Drawing;
 
 namespace TPO_WebTestFramework.Driver
 {
@@ -34,7 +35,10 @@ namespace TPO_WebTestFramework.Driver
                         break;
                 }
                 Log.Info($"Created {(browser == "" ? "default chrome" : browser)} driver");
-                Driver.Manage().Window.Maximize();
+
+                Driver.Manage().Window.Position = new Point(0, 0);
+                Driver.Manage().Window.Size = new Size(1080, 720);
+                //Driver.Manage().Window.Maximize();
             }
             return Driver;
         }
