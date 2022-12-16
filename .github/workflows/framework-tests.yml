@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --no-restore lab11and12\TPO_WebTestFramework\
     
     - name: Test
-      run: dotnet test lab11and12\TPO_WebTestFramework\TPO_WebTestFramework\bin\net6.0\Debug\WebDriverUnitTest.dll --results-directory test-result --verbosity normal --logger trx
+      run: dotnet test lab11and12\TPO_WebTestFramework\ --results-directory test-result --verbosity normal --logger trx
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
