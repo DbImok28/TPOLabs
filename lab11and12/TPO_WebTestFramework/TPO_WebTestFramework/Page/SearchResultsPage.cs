@@ -57,7 +57,19 @@ namespace TPO_WebTestFramework.Page
 
         public SearchResultsPage FilterByWithoutAnswer()
         {
-            FilterByWithoutAnswerButton.Click();
+            IWebElement? UnansweredButton = TryFindElement(By.XPath("//a[@data-nav-value='Unanswered']"));
+            if (UnansweredButton != null)
+            {
+                try
+                {
+                    UnansweredButton.Click();
+                    return this;
+                }
+                catch (Exception) { }
+            }
+            WaitedFindElement(By.XPath("//*[@id=\"mainbar\"]/div[4]/div/div[2]/div/div[1]/button")).Click();
+            WaitedFindElement(By.XPath("//*[@id='uql-more-popover']/ul/li[2]/a")).Click();
+
             return this;
         }
 

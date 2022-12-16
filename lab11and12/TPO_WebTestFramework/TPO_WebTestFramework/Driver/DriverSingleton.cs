@@ -38,7 +38,9 @@ namespace TPO_WebTestFramework.Driver
 
                 Driver.Manage().Window.Position = new Point(0, 0);
                 Driver.Manage().Window.Size = new Size(1080, 720);
-                //Driver.Manage().Window.Maximize();
+                Driver.Manage().Window.Maximize();
+                Log.Info($"Size:{Driver.Manage().Window.Size}");
+                Log.Error($"Size:{Driver.Manage().Window.Size}");
             }
             return Driver;
         }

@@ -130,15 +130,5 @@ namespace TPO_WebTestFramework.Test
                 Assert.IsTrue(HelpContent.Contains("Метка – это"));
             });
         }
-
-        //[TestMethod]
-        //public void FindChatTest()
-        //{
-        //    UITest(() =>
-        //    {
-
-        //        Assert.IsFalse(false);
-        //    });
-        //}
     }
 }

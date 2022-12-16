@@ -20,6 +20,8 @@ namespace TPO_WebTestFramework.Page
 
         public IWebElement OpenHelpPageButton => WaitedFindElement(By.XPath("//*[@id=\"footer\"]/div/nav/div[1]/ul/li[2]/a"));
 
+        public IWebElement AcceptCookiesButton => WaitedFindElement(By.XPath("/html/body/div[5]/div/button[1]"));
+
         public List<IWebElement> ListOfTagWebElement =>
             WaitedFindElement(By.Id("recent-tags-list"))
             .FindElements(By.TagName("a"))
@@ -37,6 +39,7 @@ namespace TPO_WebTestFramework.Page
         public HomePage OpenPage()
         {
             Driver.Url = HOMEPAGE_URL;
+            AcceptCookies();
             return this;
         }
 
@@ -63,7 +66,11 @@ namespace TPO_WebTestFramework.Page
 
         public TagListPage OpenTagListPage()
         {
-            OpenRightMenu();
+            try
+            {
+                RightMenuButtonElement.Click();
+            }
+            catch (Exception) { }
             OpenTagPageButtonElement.Click();
             return new TagListPage(Driver);
         }
@@ -72,7 +79,6 @@ namespace TPO_WebTestFramework.Page
         {
             OpenRightMenu();
             OpenUserPageButtonElement.Click();
-
             return new UserListPage(Driver);
         }
 
@@ -92,6 +98,16 @@ namespace TPO_WebTestFramework.Page
         {
             OpenHelpPageButton.Click();
             return new HelpSearchPage(Driver);
+        }
+
+        public HomePage AcceptCookies()
+        {
+            try
+            {
+                AcceptCookiesButton.Click();
+            }
+            catch (Exception) { }
+            return this;
         }
 
         #endregion

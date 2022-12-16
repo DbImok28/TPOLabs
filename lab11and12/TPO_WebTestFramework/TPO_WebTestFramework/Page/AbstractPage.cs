@@ -38,10 +38,13 @@ namespace TPO_WebTestFramework.Page
         {
             try
             {
-                return new WebDriverWait(Driver, TryFindWaitTimeOut).Until(condition);
+                //return new WebDriverWait(Driver, TryFindWaitTimeOut).Until(condition);
+
+                var wait = new WebDriverWait(Driver, TryFindWaitTimeOut);
+                wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                return wait.Until(condition);
             }
-            catch (WebDriverTimeoutException) { }
-            catch (NoSuchElementException) { }
+            catch (Exception) { }
             return null;
         }
 
@@ -51,8 +54,7 @@ namespace TPO_WebTestFramework.Page
             {
                 return new WebDriverWait(Driver, TryFindWaitTimeOut).Until(condition);
             }
-            catch (WebDriverTimeoutException) { }
-            catch (NoSuchElementException) { }
+            catch (Exception) { }
             return null;
         }
 
