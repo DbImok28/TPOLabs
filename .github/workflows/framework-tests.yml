@@ -1,4 +1,4 @@
-name: Run tests
+name: Run Framework web tests
 
 on:
   workflow_dispatch:
@@ -20,16 +20,16 @@ jobs:
         dotnet-version: '3.*'
 
     - name: Install dependencies
-      run: dotnet restore lab10\TPOWebTestsCSharp\
+      run: dotnet restore lab11and12\TPO_WebTestFramework\
       
     - name: Build
-      run: dotnet build --no-restore lab10\TPOWebTestsCSharp\
+      run: dotnet build --no-restore lab11and12\TPO_WebTestFramework\
     
     - name: Test
-      run: dotnet test lab10\TPOWebTestsCSharp\WebDriverUnitTest\bin\Debug\WebDriverUnitTest.dll --results-directory test-result --verbosity normal --logger trx
+      run: dotnet test lab11and12\TPO_WebTestFramework\ --results-directory test-result --verbosity normal --logger trx
 
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Application_Artifact
-        path: lab10\TPOWebTestsCSharp\test-result
+        path: lab11and12\TPO_WebTestFramework\test-result
