@@ -29,7 +29,10 @@ namespace TPO_WebTestFramework.Page
 
         #region Methods
 
-        public HomePage(WebDriver driver) : base(driver) { }
+        public HomePage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened HomePage");
+        }
 
         public HomePage OpenPage()
         {
@@ -39,6 +42,7 @@ namespace TPO_WebTestFramework.Page
 
         public SearchResultsPage SearchBySearchTerm(string request)
         {
+            Log.Info($"Search by term: {request}");
             return new SearchResultsPage(Driver, request).Search(request);
         }
 

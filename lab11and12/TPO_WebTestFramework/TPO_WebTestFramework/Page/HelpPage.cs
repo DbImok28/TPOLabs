@@ -10,6 +10,9 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public HelpPage(WebDriver driver) : base(driver) { }
+        public HelpPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened HelpPage");
+        }
     }
 }

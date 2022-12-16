@@ -37,6 +37,7 @@ namespace TPO_WebTestFramework.Page
         public SearchResultsPage(WebDriver driver, string searchRequest) : base(driver)
         {
             SearchRequest = searchRequest;
+            Log.Info($"Opened SearchResultsPage");
         }
 
         public SearchResultsPage Search(string request)

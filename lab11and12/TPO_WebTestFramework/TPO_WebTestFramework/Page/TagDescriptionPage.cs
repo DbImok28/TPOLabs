@@ -10,6 +10,9 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public TagDescriptionPage(WebDriver driver) : base(driver) { }
+        public TagDescriptionPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened TagDescriptionPage");
+        }
     }
 }

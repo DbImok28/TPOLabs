@@ -15,7 +15,10 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public LoginPage(WebDriver driver) : base(driver) { }
+        public LoginPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened LoginPage");
+        }
 
         public LoginPage EnterCredentials(User user)
         {

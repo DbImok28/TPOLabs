@@ -24,11 +24,13 @@ namespace TPO_WebTestFramework.Page
 
         public IWebElement WaitedFindElement(By by)
         {
+            Log.Info($"Find element by: {by}");
             return new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(by));
         }
 
         public IReadOnlyCollection<IWebElement> WaitedFindElements(By by)
         {
+            Log.Info($"Find elements by: {by}");
             return new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElements(by));
         }
 
@@ -56,6 +58,7 @@ namespace TPO_WebTestFramework.Page
 
         public IWebElement? TryFindElement(By by)
         {
+            Log.Info($"Try find element by: {by}");
             return TryFindElement(d => d.FindElement(by));
         }
 

@@ -21,7 +21,10 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public QuestionPage(WebDriver driver) : base(driver) { }
+        public QuestionPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened QuestionPage");
+        }
 
         public bool IsAnswered()
         {

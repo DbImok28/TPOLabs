@@ -12,7 +12,10 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public HelpSearchPage(WebDriver driver) : base(driver) { }
+        public HelpSearchPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened HelpSearchPage");
+        }
 
         public HelpSearchPage SearchBySearchTerm(string term)
         {

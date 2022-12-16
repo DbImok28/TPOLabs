@@ -18,13 +18,18 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public UserListPage(WebDriver driver) : base(driver) { }
+        public UserListPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened UserListPage");
+        }
 
         public UserListPage FindUser(string condition)
         {
             var pageBefore = PageNumber;
             UserFilterInputElement.SendKeys(condition);
             TryFindElement(d => PageNumber < pageBefore);
+            Log.Info($"Finding user: {condition}");
+
             return this;
         }
     }

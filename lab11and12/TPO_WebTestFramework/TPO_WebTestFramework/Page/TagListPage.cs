@@ -20,19 +20,26 @@ namespace TPO_WebTestFramework.Page
 
         #endregion
 
-        public TagListPage(WebDriver driver) : base(driver) { }
+        public TagListPage(WebDriver driver) : base(driver)
+        {
+            Log.Info($"Opened TagListPage");
+        }
 
         public TagListPage FindTag(string condition)
         {
             var pageBefore = PageNumber;
             TagFilterInputElement.SendKeys(condition);
             TryFindElement(d => PageNumber < pageBefore);
+            Log.Info($"Finding tag by name: {condition}");
+
             return this;
         }
 
         public SearchResultsPage OpenSearchPageByFirstFindedTag()
         {
             ListOfTagsWebElements.First().Click();
+            Log.Info($"Open first page");
+
             return new SearchResultsPage(Driver, "");
         }
     }
