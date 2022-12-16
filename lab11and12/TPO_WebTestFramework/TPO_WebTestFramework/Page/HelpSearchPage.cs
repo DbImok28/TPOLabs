@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -7,12 +6,9 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public IWebElement SearchField => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.XPath("//*[@id=\"bigsearch\"]//input")));
+        public IWebElement SearchField => WaitedFindElement(By.XPath("//*[@id=\"bigsearch\"]//input"));
 
-        public List<IWebElement> SearchResult => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElements(By.XPath("//*[@id=\"help-index\"]//span/a")))
-            .ToList();
+        public List<IWebElement> SearchResult => WaitedFindElements(By.XPath("//*[@id=\"help-index\"]//span/a")).ToList();
 
         #endregion
 

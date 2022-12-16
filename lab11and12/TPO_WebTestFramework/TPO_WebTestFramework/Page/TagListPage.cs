@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -7,18 +6,17 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public IWebElement TagFilterInputElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("tagfilter")));
+        public IWebElement TagFilterInputElement => WaitedFindElement(By.Id("tagfilter"));
 
-        public List<IWebElement> ListOfTagsWebElements => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("tags-browser")))
+        public List<IWebElement> ListOfTagsWebElements =>
+            WaitedFindElement(By.Id("tags-browser"))
             .FindElements(By.ClassName("post-tag")).ToList();
 
         public List<string> ListOfTags => ListOfTagsWebElements
             .Select(x => x.Text)
             .ToList();
 
-        public int PageNumber => Convert.ToInt32(new WebDriverWait(Driver, new TimeSpan(0, 0, 4)).Until(d => d.FindElement(By.XPath("//*[@id=\"tags_list\"]/div[2]/a[5]"))).Text);
+        public int PageNumber => Convert.ToInt32((TryFindElement(By.XPath("//*[@id=\"tags_list\"]/div[2]/a[5]"))?.Text ?? "0"));
 
         #endregion
 
@@ -28,11 +26,7 @@ namespace TPO_WebTestFramework.Page
         {
             var pageBefore = PageNumber;
             TagFilterInputElement.SendKeys(condition);
-            try
-            {
-                new WebDriverWait(Driver, new TimeSpan(0, 0, 4)).Until(d => PageNumber < pageBefore);
-            }
-            catch (WebDriverTimeoutException) { }
+            TryFindElement(d => PageNumber < pageBefore);
             return this;
         }
 

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using TPO_WebTestFramework.Model;
 
 namespace TPO_WebTestFramework.Page
@@ -8,14 +7,11 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public IWebElement EmailTextField => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("email")));
+        public IWebElement EmailTextField => WaitedFindElement(By.Id("email"));
 
-        public IWebElement PasswordTextField => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("password")));
+        public IWebElement PasswordTextField => WaitedFindElement(By.Id("password"));
 
-        public IWebElement SubmitLoginButton => new WebDriverWait(Driver, WaitTimeOut)
-           .Until(d => d.FindElement(By.Id("submit-button")));
+        public IWebElement SubmitLoginButton => WaitedFindElement(By.Id("submit-button"));
 
         #endregion
 

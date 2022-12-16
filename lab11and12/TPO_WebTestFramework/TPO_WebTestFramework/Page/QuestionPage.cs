@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -7,17 +6,16 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public string Header => new WebDriverWait(Driver, WaitTimeOut).Until((d) => d.FindElement(By.ClassName("question-hyperlink"))).Text;
+        public string Header => WaitedFindElement(By.ClassName("question-hyperlink")).Text;
 
-        public List<IWebElement>? Answers => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("answers")))
+        public List<IWebElement>? Answers => WaitedFindElement(By.Id("answers"))
             .FindElements(By.ClassName("answer"))
             .ToList();
 
         public List<int>? AnswersUproveList => Answers?.Select(x => Convert.ToInt32(x.FindElement(By.XPath("//div[@itemprop='upvoteCount']")).Text)).ToList();
 
-        public List<string> Tags => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElements(By.ClassName("post-tag")))
+        public List<string> Tags =>
+            WaitedFindElements(By.ClassName("post-tag"))
             .Select(x => x.Text)
             .ToList();
 

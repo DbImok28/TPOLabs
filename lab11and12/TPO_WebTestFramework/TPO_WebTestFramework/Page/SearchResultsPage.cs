@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -10,27 +9,28 @@ namespace TPO_WebTestFramework.Page
 
         #region WebElements
 
-        public WebElement UnansweredButtonWebElement
+        public IWebElement FilterByTagField => WaitedFindElement(By.XPath("//*[@id=\"uql-form\"]/div/div/div[1]/div/div[3]/div/div/input"));
+
+        public IWebElement ApllyFilterButton => WaitedFindElement(By.XPath("//*[@id=\"uql-form\"]/div/div/div[2]/div/div[1]/button[1]"));
+
+        public IWebElement OpenTagDescriptionPageButton => WaitedFindElement(By.XPath("//*[@id=\"mainbar\"]/div[3]/div/div/ul/li[1]/a"));
+
+        public IWebElement FilterByWithoutAnswerButton
         {
             get
             {
-                try
+                IWebElement? UnansweredButton = TryFindElement(By.XPath("//a[@data-nav-value='Unanswered']"));
+                if (UnansweredButton != null)
                 {
-                    new WebDriverWait(Driver, new TimeSpan(0, 0, 10)).Until(d => d.FindElement(By.XPath("//*[@id=\"mainbar\"]/div[4]/div/div[2]/div/div[1]/button"))).Click();
-                    return (WebElement)new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id='uql-more-popover']/ul/li[2]/a")));
+                    return UnansweredButton;
                 }
-                catch (ElementNotInteractableException)
+                else
                 {
-                    return (WebElement)new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id=\"uql-form\"]/div/div/div[1]/div/div[3]/div/div/input")));
+                    WaitedFindElement(By.XPath("//*[@id=\"mainbar\"]/div[4]/div/div[2]/div/div[1]/button")).Click();
+                    return WaitedFindElement(By.XPath("//*[@id='uql-more-popover']/ul/li[2]/a"));
                 }
             }
         }
-
-        public IWebElement FilterByTagField => new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id=\"uql-form\"]/div/div/div[1]/div/div[3]/div/div/input")));
-
-        public IWebElement ApllyFilterButton => new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id=\"uql-form\"]/div/div/div[2]/div/div[1]/button[1]")));
-
-        public IWebElement OpenTagDescriptionPageButton => new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id=\"mainbar\"]/div[3]/div/div/ul/li[1]/a")));
 
         #endregion
 
@@ -56,17 +56,7 @@ namespace TPO_WebTestFramework.Page
 
         public SearchResultsPage FilterByWithoutAnswer()
         {
-            try
-            {
-                new WebDriverWait(Driver, new TimeSpan(0, 0, 10)).Until(d => d.FindElement(By.XPath("//*[@id=\"mainbar\"]/div[4]/div/div[2]/div/div[1]/button"))).Click();
-                new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id='uql-more-popover']/ul/li[2]/a"))).Click();
-            }
-            catch (ElementNotInteractableException)
-            {
-                new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//a[@data-nav-value='Unanswered']"))).Click();
-            }
-
-            //UnansweredButtonWebElement.Click();
+            FilterByWithoutAnswerButton.Click();
             return this;
         }
 

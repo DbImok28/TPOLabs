@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -7,8 +6,7 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public string HelpContent => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.XPath("//*[@id=\"mainbar\"]/div[2]/div/p[1]"))).Text;
+        public string HelpContent => WaitedFindElement(By.XPath("//*[@id=\"mainbar\"]/div[2]/div/p[1]")).Text;
 
         #endregion
 

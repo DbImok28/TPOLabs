@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -7,18 +6,15 @@ namespace TPO_WebTestFramework.Page
     {
         #region WebElements
 
-        public IWebElement UserFilterInputElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("userfilter")));
+        public IWebElement UserFilterInputElement => WaitedFindElement(By.Id("userfilter"));
 
-        public List<string> ListOfUsernames => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("user-browser")))
+        public List<string> ListOfUsernames =>
+            WaitedFindElement(By.Id("user-browser"))
             .FindElements(By.XPath("//*[@class='user-details']/a"))
             .Select(x => x.Text)
             .ToList();
 
-        //public string? PageNumber => new WebDriverWait(Driver, WaitTimeOut).Until(d => d.FindElement(By.XPath("//*[@id=\"user-browser\"]/div[2]/a[5]"))).Text;
-
-        public int PageNumber => Convert.ToInt32(new WebDriverWait(Driver, new TimeSpan(0, 0, 4)).Until(d => d.FindElement(By.XPath("//*[@id=\"user-browser\"]/div[2]/a[5]"))).Text);
+        public int PageNumber => Convert.ToInt32((TryFindElement(By.XPath("//*[@id=\"user-browser\"]/div[2]/a[5]"))?.Text ?? "0"));
 
         #endregion
 
@@ -28,11 +24,7 @@ namespace TPO_WebTestFramework.Page
         {
             var pageBefore = PageNumber;
             UserFilterInputElement.SendKeys(condition);
-            try
-            {
-                new WebDriverWait(Driver, new TimeSpan(0, 0, 4)).Until(d => PageNumber < pageBefore);
-            }
-            catch (WebDriverTimeoutException) { }
+            TryFindElement(d => PageNumber < pageBefore);
             return this;
         }
     }

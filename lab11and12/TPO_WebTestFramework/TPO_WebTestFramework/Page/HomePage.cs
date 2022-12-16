@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace TPO_WebTestFramework.Page
 {
@@ -9,27 +8,22 @@ namespace TPO_WebTestFramework.Page
 
         #region WebElements
 
-        public IWebElement RightMenuButtonElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.ClassName("js-left-sidebar-toggle")));
+        public IWebElement RightMenuButtonElement => WaitedFindElement(By.ClassName("js-left-sidebar-toggle"));
 
-        public IWebElement OpenTagPageButtonElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("nav-tags")));
+        public IWebElement OpenTagPageButtonElement => WaitedFindElement(By.Id("nav-tags"));
 
-        public IWebElement OpenUserPageButtonElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("nav-users")));
+        public IWebElement OpenUserPageButtonElement => WaitedFindElement(By.Id("nav-users"));
 
-        public List<IWebElement> ListOfTagWebElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.Id("recent-tags-list")))
-            .FindElements(By.TagName("a")).ToList();
+        public IWebElement LoginButton => WaitedFindElement(By.XPath("/html/body/header/div/nav/ol/li[5]/a"));
 
-        public IWebElement LoginButton => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.XPath("/html/body/header/div/nav/ol/li[5]/a")));
+        public IWebElement CreateUserFilterButtonElement => WaitedFindElement(By.XPath("//*[@id=\"sidebar\"]/div[2]/ul/li/a"));
 
-        public IWebElement CreateUserFilterButtonElement => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.XPath("//*[@id=\"sidebar\"]/div[2]/ul/li/a")));
+        public IWebElement OpenHelpPageButton => WaitedFindElement(By.XPath("//*[@id=\"footer\"]/div/nav/div[1]/ul/li[2]/a"));
 
-        public IWebElement OpenHelpPageButton => new WebDriverWait(Driver, WaitTimeOut)
-            .Until(d => d.FindElement(By.XPath("//*[@id=\"footer\"]/div/nav/div[1]/ul/li[2]/a")));
+        public List<IWebElement> ListOfTagWebElement =>
+            WaitedFindElement(By.Id("recent-tags-list"))
+            .FindElements(By.TagName("a"))
+            .ToList();
 
         #endregion
 
